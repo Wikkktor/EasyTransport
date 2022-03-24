@@ -3,6 +3,13 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
+class Account(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    location = models.CharField(max_length=255)
+    lat = models.CharField(max_length=255)
+    long = models.CharField(max_length=255)
+
+
 class Order(models.Model):
     DELIVERY_STATUS = [
         (1, "Nowe"),
@@ -10,7 +17,7 @@ class Order(models.Model):
         (3, "Zrealizowane"),
         (4, 'Anulowane')
     ]
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
     client = models.CharField(max_length=255)
     phone_number = models.IntegerField()
     delivery_address = models.CharField(max_length=300)
@@ -36,7 +43,7 @@ class Order(models.Model):
 
 
 class Driver(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
 
     def get_absolute_url(self):
@@ -53,7 +60,7 @@ class Driver(models.Model):
 
 
 class Car(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
 
     def get_absolute_url(self):
@@ -70,7 +77,7 @@ class Car(models.Model):
 
 
 class Transport(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
