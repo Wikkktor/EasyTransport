@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
-class Orders(models.Model):
+class Order(models.Model):
     DELIVERY_STATUS = [
         (1, "Nowe"),
         (2, "Zdefiniowano Transport"),
@@ -35,7 +35,7 @@ class Orders(models.Model):
         return self.client + "\n" " Adres " + self.delivery_address
 
 
-class Drivers(models.Model):
+class Driver(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
 
@@ -52,7 +52,7 @@ class Drivers(models.Model):
         return self.name
 
 
-class Cars(models.Model):
+class Car(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
 
@@ -71,9 +71,9 @@ class Cars(models.Model):
 
 class Transport(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    car = models.ForeignKey(Cars, on_delete=models.CASCADE)
-    driver = models.ForeignKey(Drivers, on_delete=models.CASCADE)
-    order = models.ForeignKey(Orders, on_delete=models.CASCADE)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('transport_list_view')
