@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif!important;
 }
 
 :root{
@@ -15,6 +15,7 @@
     --primary-color-light: #F6F5FF;
     --toggle-color: #DDD;
     --text-color: #707070;
+    --box-color: #ffffff;
 
     /* ====== Transition ====== */
     --tran-02: all 0.2s ease;
@@ -43,6 +44,9 @@ body.dark{
     --text-color: #ccc;
 }
 
+span {
+    line-height: initial;
+}
 /* ===== Sidebar ===== */
  .sidebar{
     position: fixed;
@@ -282,6 +286,7 @@ body.dark .switch::before{
 }
 
 .home{
+    padding: 1.2em 3em;
     position: absolute;
     top: 0;
     left: 250px;
@@ -304,4 +309,24 @@ body.dark .switch::before{
 }
 body.dark .home .text{
     color: var(--text-color);
+}
+.center {
+    text-align: center;
+}
+
+.box {
+    background: var(--box-color);
+    overflow: hidden;
+    height: 20vh;
+    border-radius: 1.3em;
+}
+.box-text {
+    font-size: 16px;
+}
+.counter {
+    font-size: 2em;
+    font-weight: 900;
+}
+.ui.grid>.column {
+    margin: 10px;!important;
 }
