@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from TransportApp import views as v
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', v.MainPage.as_view(), name="main_page"),
+    path('', include('TransportApp.urls')),
     path('konta/', include('accounts.urls'))
 ]
