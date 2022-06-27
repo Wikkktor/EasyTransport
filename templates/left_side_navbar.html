@@ -1,13 +1,47 @@
-<nav class="sidebar">
+<script>
+    function getCookie(cname) {
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function checkCookie() {
+        let user = getCookie("stdark");
+        if (user != "") {
+            document.querySelector("body").classList.add("dark")
+            return true
+        }
+        return false
+    }
+
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+    checkCookie();
+</script>
+
+<nav class="sidebar ">
     <header>
         <div class="image-text">
-                        <span class="image">
-                            <img src="/static/images/EasyTransport.png" alt="logo">
-                        </span>
-                <div class="text header-text">
-                    <span class="name">EasyTransport</span><br>
-                    <span class="profession">Zarządzaj łatwiej</span>
-                </div>
+                            <span class="image">
+                                <img src="/static/images/EasyTransport.png" alt="logo">
+                            </span>
+            <div class="text header-text">
+                <span class="name">EasyTransport</span><br>
+                <span class="profession">Zarządzaj łatwiej</span>
+            </div>
         </div>
 
         <i class='bx bx-chevron-right toggle'></i>
@@ -16,19 +50,19 @@
         <div class="menu">
             <ul class="menu-links">
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="{% url 'main_page' %}">
                         <i class='bx bx-home-alt icon'></i>
                         <span class="text nav-text">Strona główna</span>
                     </a>
                 </li>
                 <li class="nav-link">
                     <a href="#">
-                        <i class='bx bxs-book-content icon' ></i>
+                        <i class='bx bxs-book-content icon'></i>
                         <span class="text nav-text">Zamówienia</span>
                     </a>
                 </li>
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="{% url 'add_order' %}">
                         <i class='bx bxs-cart-add icon'></i>
                         <span class="text nav-text">Dodaj zamówienie</span>
                     </a>
