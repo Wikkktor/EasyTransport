@@ -5,30 +5,58 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-    <link href="/static/css/semantic.min.css" rel="stylesheet" media="all">
-    <title>EasyTransport</title>
-    <link href="/static/css/main.css" rel="stylesheet">
-    <script src="/static/js/main.js"></script>
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <title>{% block title %}EasyTransport{% endblock %}</title>
+    {% block style %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+        <link href="/static/css/semantic.min.css" rel="stylesheet" media="all">
+        <link href="/static/css/main.css" rel="stylesheet">
+        <script src="/static/js/main.js"></script>
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    {% endblock %}
 </head>
 <body>
 {% include 'left_side_navbar.html' %}
-<section class="home">
-    <div class="ui grid equal width stackable">
-        <div class="column center box">
-            <div class="box-text">
-                <span class="counter">6</span><br>
-                <span>Nie zrealizowanych zamówień</span>
+<section class="home" style="overflow: hidden">
+    {% block content %}
+        <div class="ui grid equal width stackable">
+            <div class="column center box">
+                <div class="box-text flex_column">
+                    <span class="counter">6</span>
+                    <span>Nie zrealizowanych zamówień</span>
+                </div>
+            </div>
+            <div class="column center box">
+
+            </div>
+            <div class="column center box">
+
             </div>
         </div>
-        <div class="column center box">
+        <div id="map" class="container map"></div>
+        <script async
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPKFPVn75l7w_Z7idkPrKcjLUpEiU51A8&callback=initMap">
+        </script>
+        <script>
+            function initMap() {
+                const place = {lat: 52.12406527552787, lng: 20.7969335684975};
+                var map_id = "8f9590cbf4ad1a3b";
+                if (document.querySelector("body").classList[0] === "dark") {
+                    map_id = "c5e9e87e5640ff53";
+                }
 
-        </div>
-        <div class="column center box">
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 12,
+                    center: place,
+                    mapId: map_id,
+                });
 
-        </div>
-    </div>
+                const marker = new google.maps.Marker({
+                    position: place,
+                    map: map,
+                });
+            }
+        </script>
+    {% endblock %}
 </section>
 </body>
 </html>
