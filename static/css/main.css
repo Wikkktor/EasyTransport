@@ -295,6 +295,11 @@ body.dark .switch::before{
     background-color: var(--body-color);
     transition: var(--tran-05);
 }
+@media only screen and (max-width: 767px) {
+  .home {
+    width: calc(100% - 78px);
+  }
+}
 .home .text{
     font-size: 30px;
     font-weight: 500;
