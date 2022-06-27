@@ -330,3 +330,24 @@ body.dark .home .text{
 .ui.grid>.column {
     margin: 10px;!important;
 }
+.nav-link.active {
+    background-color: var(--primary-color-light);
+    border-radius: 6px;
+}
+.flex_column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.map {
+    height: 75vh;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 1.3em;
+}
+body .home .grid .box {
+    background-color: var(--sidebar-color);
+    color: var(--text-color)
+}
