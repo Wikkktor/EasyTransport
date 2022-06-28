@@ -14,7 +14,12 @@ window.onload = function () {
 
     modeSwitch.addEventListener("click", () => {
         body.classList.toggle("dark");
-        initMap();
+        try {
+           initMap();
+        }
+        catch (error) {
+            null
+        }
         let cook = darkCookieGet("stdark");
         if (body.classList[0] === "dark"){
             if (cook == "")  {
