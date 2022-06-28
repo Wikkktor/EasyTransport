@@ -1,0 +1,38 @@
+{% extends 'main_page.html' %}
+{% block title %}
+    EasyTransport | Zamówienia
+{% endblock %}
+{% block content %}
+{#    <div class="ui input focus">#}
+{#        <input type="text" placeholder="Search...">#}
+{#    </div>#}
+    <div>
+        <button class="ui primary basic button">Wszystkie zamówienia</button>
+        <button class="ui primary basic button">Nowe</button>
+        <button class="ui positive basic button">Zrealizowane</button>
+        <button class="ui primary basic button">Zdefiniowano transport</button>
+        <button class="ui negative basic button">Anulowane</button>
+    </div>
+    <hr>
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>IMIE NAZWISKO</th>
+            <th>ZAWARTOŚĆ</th>
+            <th>ADRES DOSTAWY</th>
+            <th>DATA DOSTARCZENIA</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr class="{% if order.status == 3 %}positive{% elif order.status == 4 %}negative{% endif %}">
+                <td>{{ order.client }}</td>
+                <td><p>{{ order.opis }}</p></td>
+                <td>{{ order.delivery_address }}</td>
+                <td>{{ order.delivery_time|date:'d/m H:i' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
