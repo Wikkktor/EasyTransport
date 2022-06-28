@@ -17,7 +17,7 @@ class Order(models.Model):
         (3, "Zrealizowane"),
         (4, 'Anulowane')
     ]
-    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     client_name = models.CharField(max_length=255)
     client_surname = models.CharField(max_length=255)
     phone_number = models.IntegerField()
@@ -38,6 +38,9 @@ class Order(models.Model):
 
     def get_modify_url(self):
         return reverse('order_update_view', args=(self.pk,))
+
+    def client(self):
+        return self.client_name + " " + self.client_surname
 
     def __str__(self):
         return self.client + "\n" " Adres " + self.delivery_address
