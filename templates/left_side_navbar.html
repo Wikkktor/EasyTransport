@@ -1,3 +1,4 @@
+{% load static %}
 <script>
     function getCookie(cname) {
         let name = cname + "=";
@@ -36,7 +37,7 @@
     <header>
         <div class="image-text">
                             <span class="image">
-                                <img src="/static/images/EasyTransport.png" alt="logo">
+                                <img src="{% static 'images/EasyTransport.png' %}" alt="logo">
                             </span>
             <div class="text header-text">
                 <span class="name">EasyTransport</span><br>
@@ -49,44 +50,44 @@
     <div class="menu-bar">
         <div class="menu">
             <ul class="menu-links">
-                <li class="nav-link">
+                <li class="nav-link {% if active_item == "home" %}active{% endif %}">
                     <a href="{% url 'main_page' %}">
                         <i class='bx bx-home-alt icon'></i>
                         <span class="text nav-text">Strona główna</span>
                     </a>
                 </li>
-                <li class="nav-link">
-                    <a href="#">
+                <li class="nav-link {% if active_item == "orders" %}active{% endif %}">
+                    <a href="{% url 'orders' %}">
                         <i class='bx bxs-book-content icon'></i>
                         <span class="text nav-text">Zamówienia</span>
                     </a>
                 </li>
-                <li class="nav-link">
+                <li class="nav-link {% if active_item == "add_order" %}active{% endif %}">
                     <a href="{% url 'add_order' %}">
                         <i class='bx bxs-cart-add icon'></i>
                         <span class="text nav-text">Dodaj zamówienie</span>
                     </a>
                 </li>
-                <li class="nav-link">
-                    <a href="#">
+                <li class="nav-link {% if active_item == "analysis" %}active{% endif %}">
+                    <a href="{% url 'analysis' %}">
                         <i class='bx bx-analyse icon'></i>
                         <span class="text nav-text">Analiza</span>
                     </a>
                 </li>
-                <li class="nav-link">
-                    <a href="#">
+                <li class="nav-link {% if active_item == "payments" %}active{% endif %}">
+                    <a href="">
                         <i class='bx bx-wallet icon'></i>
                         <span class="text nav-text">Płatności</span>
                     </a>
                 </li>
-                <li class="nav-link">
-                    <a href="#">
+                <li class="nav-link {% if active_item == "settings" %}active{% endif %} ">
+                    <a href="{% url 'settings' %}">
                         <i class='bx bxs-hard-hat icon'></i>
                         <span class="text nav-text">Ustawienia</span>
                     </a>
                 </li>
-                <li class="nav-link">
-                    <a href="#">
+                <li class="nav-link {% if active_item == "contact" %}active{% endif %}">
+                    <a href="{% url 'contact' %}">
                         <i class='bx bx-help-circle icon'></i>
                         <span class="text nav-text">Pomoc i kontakt</span>
                     </a>
@@ -95,7 +96,7 @@
         </div>
         <div class="bottom-content">
             <li class="">
-                <a href="#">
+                <a href="{% url 'sign_out' %}">
                     <i class='bx bx-log-out icon'></i>
                     <span class="text nav-text">Wyloguj</span>
                 </a>
