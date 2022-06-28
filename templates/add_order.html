@@ -1,0 +1,71 @@
+{% extends 'main_page.html' %}
+{% block title %}
+    EasyTransport | Dodaj zamówienie
+{% endblock %}
+{% block content %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+    <div class="container add_order_coint">
+        <form class="ui form" method="post">
+            {% csrf_token %}
+            <h4 class="ui dividing header">Dodaj zamówienie</h4>
+            <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                        <label>*Imię odbiorcy:</label>
+                        <input type="text" name="first_name" required placeholder="Jan">
+                    </div>
+                    <div class="field">
+                        <label>Nazwisko odbiorcy:</label>
+                        <input type="text" name="last_name" required placeholder="Nowak">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="fields">
+                    <div class="twelve wide field">
+                        <label>Numer telefonu:</label>
+                        <input type="number" name="phone" required placeholder="123 123 123">
+                        <p id="phone_info" style="margin-top: 2px; font-size: 13px">*Na ten numer zostanie wysłany sms z powiadomieniem
+                            o dostawie.</p>
+                    </div>
+                    <div class="four wide field">
+                        <label>Termin dostawy:</label>
+                        <input id="datetime" type="datetime-local" name="deliverydate" required value="">
+                    </div>
+                    <script>
+                        document.querySelector("#datetime").value = moment(new Date()).format('YYYY-MM-DDTHH:mm')
+                    </script>
+                </div>
+            </div>
+            <div class="field">
+                <div class="fields">
+                    <div class="five wide field">
+                        <label>Miasto:</label>
+                        <input type="text" name="city" required placeholder="Warszawa">
+                    </div>
+                    <div class="seven wide field">
+                        <label>Ulica:</label>
+                        <input type="text" name="address" required placeholder="Łopuszańska 4">
+                    </div>
+                    <div class="five wide field">
+                        <label>Kod pocztowy:</label>
+                        <input type="text" name="post_code" required placeholder="02-220">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Dodatkowe informacje:</label>
+                <textarea type="text" name="more_info"></textarea>
+            </div>
+            <h4 class="ui dividing header"></h4>
+            <div class="field center aligned">
+                {% if messages %}
+                    {% for msg in messages %}
+                        <p style="color: red">{{ msg }}</p>
+                    {% endfor %}
+                {% endif %}
+                <button type="submit" class="ui button main_button">Dodaj zamówienie</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
