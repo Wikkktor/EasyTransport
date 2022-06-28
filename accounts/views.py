@@ -5,7 +5,7 @@ from django.views import View
 from .validators import register_validator
 from django.contrib.auth.models import User
 from TransportApp.models import Account
-from .geolocation import get_location_lat_long
+from TransportApp.geocode import get_location_lat_long
 
 
 class Register_view(View):
