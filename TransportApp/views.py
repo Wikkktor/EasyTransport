@@ -45,7 +45,7 @@ class Add_order(LoginRequiredMixin, View):
 class Orders_view(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user.id
-        orders = Order.objects.filter(user_id=user)
+        orders = Order.objects.filter(user_id=user).order_by('delivery_time')
         return render(request, 'orders_list.html', {'orders': orders})
 
 
