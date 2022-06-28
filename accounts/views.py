@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate, login
 from django.shortcuts import render, redirect
 from django.views import View
 from .validators import register_validator
@@ -31,23 +31,33 @@ class Register_view(View):
                 return redirect('register')
             account = Account(user=user, location=address, lat=geolocation[0], long=geolocation[1])
             account.save()
+            login(request, user)
             return redirect('main_page')
         return redirect('register')
 
 
 class Login_view(View):
     def get(self, request):
-        user = request.user.is_authenticated
-        if user:
+        user = request.user
+        if user.is_authenticated:
             return redirect("main_page")
         return render(request, 'accounts/login.html')
+
+    def post(self, request):
+        username = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('main_page')
+        messages.error(request, "Niepoprawne hasło bądź email")
+        return redirect('sign_in')
 
 
 class Logout_view(View):
     def get(self, request):
-        user = request.user.is_authenticated
-        if user:
+        user = request.user
+        if user.is_authenticated:
             logout(request)
             return redirect("main_page")
-        else:
-            return redirect("main_page")
+        return redirect("main_page")
