@@ -57,11 +57,16 @@
                         <input type="text" required name="address" placeholder="Podaj dokładny adres firmy">
                     </div>
                 </div>
+                {% if messages %}
+                {% for msg in messages %}
+                <p style="margin: 0; color: white;">{{ msg }}</p>
+                {% endfor %}
+                {% endif %}
                 <div style="display: flex; justify-content: center">
                     <button type="submit" class="button btn-grad">Zarejestruj się</button>
                 </div>
                 <div class="login_in">
-                    Masz już konto? <a href="#">Zaloguj się</a>
+                    Masz już konto? <a href="{% url 'sign_in' %}">Zaloguj się</a>
                 </div>
             </div>
 
