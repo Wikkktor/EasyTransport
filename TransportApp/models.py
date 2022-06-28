@@ -18,7 +18,8 @@ class Order(models.Model):
         (4, 'Anulowane')
     ]
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
-    client = models.CharField(max_length=255)
+    client_name = models.CharField(max_length=255)
+    client_surname = models.CharField(max_length=255)
     phone_number = models.IntegerField()
     delivery_address = models.CharField(max_length=300)
     delivery_time = models.DateTimeField()
