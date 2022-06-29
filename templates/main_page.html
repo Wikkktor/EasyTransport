@@ -18,20 +18,26 @@
 </head>
 <body>
 {% include 'left_side_navbar.html' %}
-<section class="home" style="overflow: hidden">
+<section class="home" style="overflow: hidden; overflow-y: scroll;">
     {% block content %}
         <div class="ui grid equal width stackable">
             <div class="column center box">
                 <div class="box-text flex_column">
-                    <span class="counter">6</span>
+                    <span class="counter">{{ orders.count }}</span>
                     <span>Nie zrealizowanych zamówień</span>
                 </div>
             </div>
             <div class="column center box">
-
+                <div class="box-text flex_column">
+                    <span class="counter">{{ today.count }}</span>
+                    <span>Zamówień na dziś</span>
+                </div>
             </div>
             <div class="column center box">
-
+                <div class="box-text flex_column">
+                    <span class="counter"></span>
+                    <span></span>
+                </div>
             </div>
         </div>
         <div id="map" class="container-fluid map"></div>
