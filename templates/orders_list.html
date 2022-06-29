@@ -6,14 +6,13 @@
 {#    <div class="ui input focus">#}
 {#        <input type="text" placeholder="Search...">#}
 {#    </div>#}
-    <div>
+    <div class="flex_filter">
         <button class="ui primary basic button">Wszystkie zamówienia</button>
         <button class="ui primary basic button">Nowe</button>
         <button class="ui positive basic button">Zrealizowane</button>
         <button class="ui primary basic button">Zdefiniowano transport</button>
         <button class="ui negative basic button">Anulowane</button>
     </div>
-    <hr>
     <table class="ui celled table">
         <thead>
         <tr>
@@ -25,11 +24,11 @@
         </thead>
         <tbody>
         {% for order in orders %}
-            <tr class="{% if order.status == 3 %}positive{% elif order.status == 4 %}negative{% endif %}">
-                <td>{{ order.client }}</td>
-                <td><p>{{ order.opis }}</p></td>
-                <td>{{ order.delivery_address }}</td>
-                <td>{{ order.delivery_time|date:'d/m H:i' }}</td>
+            <tr onclick="window.location.replace('/')" class="{% if order.status == 3 %}positive{% elif order.status == 4 %}negative{% endif %}">
+                <td><i class='bx bxs-user-account' ></i> {{ order.client }}</td>
+                <td class="delivery_content"><p>{{ order.opis }}</p></td>
+                <td><i class='bx bxs-map-alt'></i> {{ order.delivery_address }}</td>
+                <td><i class='bx bxs-calendar' ></i> {{ order.delivery_time|date:'d/m H:i' }}</td>
             </tr>
         {% endfor %}
         </tbody>
