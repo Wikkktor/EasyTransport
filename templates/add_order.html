@@ -30,7 +30,7 @@
                     </div>
                     <div class="four wide field">
                         <label>*Termin dostawy:</label>
-                        <input id="datetime" type="datetime-local" name="deliverydate" required value="">
+                        <input class="picker" id="datetime" type="datetime-local" name="deliverydate" required value="">
                     </div>
                     <script>
                         document.querySelector("#datetime").value = moment(new Date()).format('YYYY-MM-DDTHH:mm')
