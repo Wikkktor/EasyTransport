@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
@@ -5,10 +7,17 @@ from django.views import View
 from .geocode import get_location_lat_long, get_distance_time_values
 from .models import Order, Transport, Car, Driver
 
+today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
+today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
+
 
 class MainPage(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, "main_page.html")
+        user = request.user.id
+        not_done_orders = Order.objects.filter(user_id=user, status__lt=3)
+        today_orders = Order.objects.filter(user_id=user, delivery_time__range=(today_min, today_max))
+        return render(request, "main_page.html",
+                      {'orders': not_done_orders, 'today': today_orders})
 
 
 class Add_order(LoginRequiredMixin, View):
@@ -67,4 +76,3 @@ class Contact(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user.id
         return render(request, 'help.html')
-
