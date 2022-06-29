@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views import View
 from .geocode import get_location_lat_long, get_distance_time_values
-from .models import Order, Transport, Car, Driver
+from .models import Order, Transport, Car, Driver, Account
 
 today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
 today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
@@ -37,16 +37,16 @@ class Add_order(LoginRequiredMixin, View):
         if not f_name or not l_name or not phone or not city or not address:
             messages.add_message(request, messages.INFO, "Nie prawidłowe dane")
             return redirect('add_order')
-        location = f"{address}, {post_code} {city}" if post_code else f"{address}, {city}"
-        geocode = get_location_lat_long(location)
-        # time_dist = get_distance_time_values(location, ) # TODO: Origin place dodac
+        delivery_address = f"{address}, {post_code} {city}" if post_code else f"{address}, {city}"
+        geocode = get_location_lat_long(delivery_address)
+        time_dist = get_distance_time_values(Account.objects.get(user_id=user.id).location, delivery_address)
         if not geocode:
             messages.add_message(request, messages.INFO,
                                  "Niestety nie możemy przekonwertować tego adresu, spróbuj dodać więcej danych")
             return redirect('add_order')
         order = Order.objects.create(user_id=user.id, client_name=f_name, client_surname=l_name, phone_number=phone,
-                                     delivery_address=location, delivery_time=delivery_dt, opis=info, lat=geocode[0],
-                                     lon=geocode[1])
+                                     delivery_address=delivery_address, delivery_time=delivery_dt, opis=info, lat=geocode[0],
+                                     lon=geocode[1], distance=time_dist[0], time=time_dist[1])
         order.save()
         return redirect('main_page')
 
