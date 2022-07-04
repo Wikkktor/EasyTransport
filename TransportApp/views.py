@@ -14,10 +14,11 @@ today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
 class MainPage(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user.id
+        account = Account.objects.get(user_id=user)
         not_done_orders = Order.objects.filter(user_id=user, status__lt=3)
         today_orders = Order.objects.filter(user_id=user, delivery_time__range=(today_min, today_max))
         return render(request, "main_page.html",
-                      {'orders': not_done_orders, 'today': today_orders})
+                      {'orders': not_done_orders, 'today': today_orders, 'account':account})
 
 
 class Add_order(LoginRequiredMixin, View):
