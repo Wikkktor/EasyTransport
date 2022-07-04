@@ -490,7 +490,7 @@ body.dark .table {
     border: 1px solid white!important;
 }
 
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 910px){
     .delivery_content {
         max-height: 100px!important;
         overflow: hidden;
@@ -499,6 +499,9 @@ body.dark .table {
     .flex_filter button {
         width: 100%!important;
         margin-bottom: 5px!important;
+    }
+    .filter_all {
+        margin-bottom: 0!important;
     }
 }
 .table {
@@ -510,4 +513,16 @@ body.dark .table {
 .flex_filter {
     text-align: center;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+@media only screen and (max-width: 1120px){
+
+    .flex_filter {
+        flex-direction: column;
+    }
+    .filter_all {
+        margin-bottom: 10px;
+    }
 }
