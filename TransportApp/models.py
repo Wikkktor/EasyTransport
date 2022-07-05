@@ -27,7 +27,7 @@ class Order(models.Model):
     opis = models.TextField(null=True, blank=True)
     lat = models.CharField(max_length=300, null=True)
     lon = models.CharField(max_length=300, null=True)
-    distance = models.FloatField(null=True, blank=True)
+    distance = models.DecimalField(decimal_places=2, max_digits=7, null=True, blank=True)
     time = models.CharField(max_length=300, null=True)
 
     def get_absolute_url(self):
