@@ -66,17 +66,17 @@ class Analysis(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user.id
         orders = Order.objects.filter(user_id=user)
+        drivers = Driver.objects.filter(user_id=user)
+        cars = Car.objects.filter(user_id=user)
+        context = {'drivers': drivers, 'cars': cars, 'orders': orders}
         # TODO: wykres na podstawie zamówień, łączna ilość km ile przejechał etc
-        return render(request, 'analysis.html', {'orders': orders})
+        return render(request, 'analysis.html', context)
 
 
 class Settings(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user.id
-        drivers = Driver.objects.filter(user_id=user)
-        cars = Car.objects.filter(user_id=user)
-        context = {'drivers': drivers, 'cars': cars}
-        return render(request, 'settings.html', context)
+        return render(request, 'settings.html')
 
 
 class Payments(LoginRequiredMixin, View):
