@@ -18,58 +18,126 @@
             <canvas id="circleChart"></canvas>
         </div>
         <div class="chartbox">
-            <canvas id="barChart"> </canvas>
+            <canvas id="barChart"></canvas>
         </div>
     </div>
     <script>
-    const ctx = document.getElementById('barChart').getContext('2d');
-const ctx2 = document.getElementById("circleChart").getContext('2d');
-const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: 'Ilość zamówień',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false
-    }
-});
+        const ctx = document.getElementById('barChart').getContext('2d');
+        const ctx2 = document.getElementById("circleChart").getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec'],
+                datasets: [{
+                    label: 'Ilość zamówień',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
 
-const myChart2 = new Chart(ctx2, {
-    type: 'polarArea',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow',],
-        datasets: [{
-            label: 'Kursy samochodami',
-            data: [12, 19, 11],
-            backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-            ],
-            borderColor: [
-                'rgba(0, 0, 0, 0)',
+        const myChart2 = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Maj', 'Czerwiec', 'Lipiec',],
+                datasets: [{
+                    label: 'Kursy samochodami',
+                    data: [12, 19, 11],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                    ],
+                    borderColor: [
+                        'rgba(0, 0, 0, 1)',
 
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false
-    }
-});
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
     </script>
+    <div class="analysis_section">
+        <div class="analysis_box">
+            <div class="counter center">
+                Kierowcy
+            </div>
+            <table class="ui celled table">
+                <thead>
+                <tr>
+                    <th>Imie nazwisko</th>
+                    <th>Zamówienia zrealizowane</th>
+                    <th>Kilometry łącznie</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td data-label="Name">James</td>
+                    <td data-label="Age">24</td>
+                    <td data-label="Job">Engineer</td>
+                </tr>
+                <tr>
+                    <td data-label="Name">Jill</td>
+                    <td data-label="Age">26</td>
+                    <td data-label="Job">Engineer</td>
+                </tr>
+                <tr>
+                    <td data-label="Name">Elyse</td>
+                    <td data-label="Age">24</td>
+                    <td data-label="Job">Designer</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="analysis_box">
+            <div class="counter center">
+                Pojazdy
+            </div>
+            <table class="ui celled table">
+                <thead>
+                <tr>
+                    <th>Nazwa pojazdu</th>
+                    <th>Zamówienia zrealizowane</th>
+                    <th>Kilometry łącznie</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td data-label="Name">James</td>
+                    <td data-label="Age">24</td>
+                    <td data-label="Job">Engineer</td>
+                </tr>
+                <tr>
+                    <td data-label="Name">Jill</td>
+                    <td data-label="Age">26</td>
+                    <td data-label="Job">Engineer</td>
+                </tr>
+                <tr>
+                    <td data-label="Name">Elyse</td>
+                    <td data-label="Age">24</td>
+                    <td data-label="Job">Designer</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="analysis_box">
+
+        </div>
+    </div>
+
 {% endblock %}
