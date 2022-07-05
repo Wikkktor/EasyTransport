@@ -86,21 +86,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td data-label="Name">James</td>
-                    <td data-label="Age">24</td>
-                    <td data-label="Job">Engineer</td>
-                </tr>
-                <tr>
-                    <td data-label="Name">Jill</td>
-                    <td data-label="Age">26</td>
-                    <td data-label="Job">Engineer</td>
-                </tr>
-                <tr>
-                    <td data-label="Name">Elyse</td>
-                    <td data-label="Age">24</td>
-                    <td data-label="Job">Designer</td>
-                </tr>
+                {% for driver in drivers %}
+                    <tr>
+                        <td data-label="Name">{{ driver.name }}</td>
+                        <td data-label="Age">{{ driver.count }}</td>
+                        <td data-label="Job">{{ driver.sum }} km</td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -117,26 +109,30 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td data-label="Name">James</td>
-                    <td data-label="Age">24</td>
-                    <td data-label="Job">Engineer</td>
-                </tr>
-                <tr>
-                    <td data-label="Name">Jill</td>
-                    <td data-label="Age">26</td>
-                    <td data-label="Job">Engineer</td>
-                </tr>
-                <tr>
-                    <td data-label="Name">Elyse</td>
-                    <td data-label="Age">24</td>
-                    <td data-label="Job">Designer</td>
-                </tr>
+                {% for car in cars %}
+                    <tr>
+                        <td data-label="Name">{{ car.name }}</td>
+                        <td data-label="Age">{{ car.count }}</td>
+                        <td data-label="Job">{{ car.sum }} km</td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
-        <div class="analysis_box">
-
+        <div class="analysis_box" id="">
+            <div class="counter center">
+                Zamówienia w sektorach
+            </div>
+            <table class="ui celled table">
+                <tbody>
+                {% for range in ranges %}
+                    <tr>
+                        <td data-label="Name">{{ range.1 }} km</td>
+                        <td data-label="Age">{{ range.0 }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 
