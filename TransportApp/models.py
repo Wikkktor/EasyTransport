@@ -47,7 +47,7 @@ class Order(models.Model):
 
 
 class Driver(models.Model):
-    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
 
     def get_absolute_url(self):
@@ -64,7 +64,7 @@ class Driver(models.Model):
 
 
 class Car(models.Model):
-    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
 
     def get_absolute_url(self):
@@ -81,7 +81,7 @@ class Car(models.Model):
 
 
 class Transport(models.Model):
-    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
