@@ -503,6 +503,10 @@ body.dark .table {
     .filter_all {
         margin-bottom: 0!important;
     }
+    .graphBox {
+        grid-template-columns: 1fr!important;
+        max-height: fit-content!important;
+    }
 }
 .table {
     overflow-y: scroll;
@@ -525,4 +529,28 @@ body.dark .table {
     .filter_all {
         margin-bottom: 10px;
     }
+}
+.charts {
+    height: fit-content!important;
+}
+
+/*  CHARTS */
+.graphBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px;
+    min-height: 200px;
+    max-height: 350px;
+}
+.graphBox .chartbox {
+    position: relative;
+    background: var(--sidebar-color);
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 7px 25px rgba(0,0,0,0);
+    border-radius: 1.3em;
 }
