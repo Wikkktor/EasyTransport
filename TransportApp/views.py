@@ -41,13 +41,17 @@ class Add_order(LoginRequiredMixin, View):
         delivery_address = f"{address}, {post_code} {city}" if post_code else f"{address}, {city}"
         geocode = get_location_lat_long(delivery_address)
         time_dist = get_distance_time_values(Account.objects.get(user_id=user.id).location, delivery_address)
+        try:
+            distance = float(time_dist[0].split(" ")[0].replace(",", "."))
+        except ValueError:
+            distance = 0
         if not geocode:
             messages.add_message(request, messages.INFO,
                                  "Niestety nie możemy przekonwertować tego adresu, spróbuj dodać więcej danych")
             return redirect('add_order')
         order = Order.objects.create(user_id=user.id, client_name=f_name, client_surname=l_name, phone_number=phone,
                                      delivery_address=delivery_address, delivery_time=delivery_dt, opis=info, lat=geocode[0],
-                                     lon=geocode[1], distance=time_dist[0], time=time_dist[1])
+                                     lon=geocode[1], distance=distance, time=time_dist[1])
         order.save()
         return redirect('main_page')
 
@@ -69,7 +73,6 @@ class Analysis(LoginRequiredMixin, View):
         drivers = Driver.objects.filter(user_id=user)
         cars = Car.objects.filter(user_id=user)
         context = {'drivers': drivers, 'cars': cars, 'orders': orders}
-        # TODO: wykres na podstawie zamówień, łączna ilość km ile przejechał etc
         return render(request, 'analysis.html', context)
 
 
