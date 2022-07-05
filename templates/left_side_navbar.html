@@ -30,6 +30,7 @@
         let expires = "expires=" + d.toUTCString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
+
     checkCookie();
 </script>
 
@@ -37,11 +38,15 @@
     <header>
         <div class="image-text">
                             <span class="image">
+                                    <a href="{% url 'main_page' %}">
                                 <img src="{% static 'images/EasyTransport.png' %}" alt="logo">
+                                    </a>
                             </span>
             <div class="text header-text">
-                <span class="name">EasyTransport</span><br>
-                <span class="profession">Zarządzaj łatwiej</span>
+                <a href="{% url 'main_page' %}">
+                    <span class="name">EasyTransport</span><br>
+                    <span class="profession">Zarządzaj łatwiej</span>
+                </a>
             </div>
         </div>
 
