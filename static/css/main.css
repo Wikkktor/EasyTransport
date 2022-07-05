@@ -325,6 +325,7 @@ body.dark .switch::before {
 @media only screen and (max-width: 767px) {
     .home {
         width: calc(100% - 78px);
+        padding: 1.2em 1em!important;
     }
 }
 
@@ -336,7 +337,7 @@ body.dark .switch::before {
 }
 
 .sidebar.close ~ .home {
-    left: 78px;
+    left: 80px;
     height: 100vh;
     width: calc(100% - 78px);
 }
@@ -409,19 +410,22 @@ body .home .grid .box {
 .ui.dividing.header {
     border-bottom: 1px solid var(--text-color) !important;
 }
+
 input.picker[type="datetime-local"] {
     position: relative;
 }
+
 input.picker[type="datetime-local"]::-webkit-calendar-picker-indicator {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  color: transparent;
-  background: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    color: transparent;
+    background: transparent;
 }
+
 label {
     font-size: 16px !important;
 }
@@ -451,18 +455,22 @@ label {
     input {
         height: 30px !important;
     }
+
     label {
-        font-size: 13px!important;
+        font-size: 13px !important;
     }
+
     .field {
-        margin: 0!important;
+        margin: 0 !important;
     }
+
     .home {
-        overflow: unset!important;
-        height: fit-content!important;
+        overflow: unset !important;
+        height: fit-content !important;
     }
+
     .main_button {
-        width: fit-content!important;
+        width: fit-content !important;
     }
 }
 
@@ -480,40 +488,54 @@ label {
 .ui.form textarea:not([rows]) {
     height: 6em !important;
 }
+
 .table {
-    background: unset!important;
-}
-.ui.table thead th {
-    background: unset!important;
-}
-body.dark .table {
-    border: 1px solid white!important;
+    background: unset !important;
 }
 
-@media only screen and (max-width: 910px){
+.ui.table thead th {
+    background: unset !important;
+}
+
+body.dark .table {
+    border: 1px solid white !important;
+}
+
+@media only screen and (max-width: 910px) {
     .delivery_content {
-        max-height: 100px!important;
+        max-height: 100px !important;
         overflow: hidden;
         overflow-y: scroll;
     }
+
     .flex_filter button {
-        width: 100%!important;
-        margin-bottom: 5px!important;
+        width: 100% !important;
+        margin-bottom: 5px !important;
     }
+
     .filter_all {
-        margin-bottom: 0!important;
+        margin-bottom: 0 !important;
     }
+
     .graphBox {
-        grid-template-columns: 1fr!important;
-        max-height: fit-content!important;
+        grid-template-columns: 1fr !important;
+        max-height: fit-content !important;
+    }
+
+    .analysis_section {
+        grid-template-columns: 1fr !important;
+        max-height: fit-content !important;
     }
 }
+
 .table {
     overflow-y: scroll;
 }
+
 .table tr {
     cursor: pointer;
 }
+
 .flex_filter {
     text-align: center;
     width: 100%;
@@ -521,17 +543,20 @@ body.dark .table {
     flex-direction: row;
     justify-content: space-between;
 }
-@media only screen and (max-width: 1120px){
+
+@media only screen and (max-width: 1120px) {
 
     .flex_filter {
         flex-direction: column;
     }
+
     .filter_all {
         margin-bottom: 10px;
     }
 }
+
 .charts {
-    height: fit-content!important;
+    height: fit-content !important;
 }
 
 /*  CHARTS */
@@ -545,12 +570,43 @@ body.dark .table {
     min-height: 200px;
     max-height: 350px;
 }
+
 .graphBox .chartbox {
     position: relative;
     background: var(--sidebar-color);
     padding: 20px;
     width: 100%;
     height: 100%;
-    box-shadow: 0 7px 25px rgba(0,0,0,0);
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0);
     border-radius: 1.3em;
+}
+
+/* END OF CHARTS */
+
+/* ANOTHER ANALYSIS */
+.analysis_section {
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 30px;
+    height: calc(100% - 350px);
+}
+
+.analysis_section .analysis_box {
+    position: relative;
+    background: var(--sidebar-color);
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0);
+    border-radius: 1.3em;
+    color: var(--text-color);
+    overflow-y: scroll;
+}
+
+.analysis_box .counter {
+    margin-bottom: 20px;
 }
