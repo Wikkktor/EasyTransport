@@ -7,5 +7,6 @@ urlpatterns = [
     re_path(r'^zamowienia/(?P<status>[0-4])?/?$', v.Orders_view.as_view(), name='orders'),
     path('analiza/', v.Analysis.as_view(), name='analysis'),
     path('ustawienia/', v.Settings.as_view(), name='settings'),
-    path('kontakt-pomoc/', v.Contact.as_view(), name='contact')
+    path('kontakt-pomoc/', v.Contact.as_view(), name='contact'),
+    path('platnosci/', v.Payments.as_view(), name='payments')
 ]
