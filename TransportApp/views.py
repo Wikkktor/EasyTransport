@@ -73,7 +73,16 @@ class Analysis(LoginRequiredMixin, View):
 class Settings(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user.id
-        return render(request, 'settings.html')
+        drivers = Driver.objects.filter(user_id=user)
+        cars = Car.objects.filter(user_id=user)
+        context = {'drivers': drivers, 'cars': cars}
+        return render(request, 'settings.html', context)
+
+
+class Payments(LoginRequiredMixin, View):
+    def get(self, request):
+        user = request.user.id
+        return render(request, 'payments.html')
 
 
 class Contact(LoginRequiredMixin, View):
