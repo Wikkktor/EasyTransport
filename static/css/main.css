@@ -325,7 +325,7 @@ body.dark .switch::before {
 @media only screen and (max-width: 767px) {
     .home {
         width: calc(100% - 78px);
-        padding: 1.2em 1em!important;
+        padding: 1.2em 1em !important;
     }
 }
 
@@ -440,6 +440,22 @@ label {
     }
 }
 
+/* TABLET */
+@media screen and (max-width: 1024px) {
+    .home {
+        overflow: unset !important;
+        height: fit-content !important;
+        width: calc(100% - 78px) !important;
+    }
+
+    .analysis_section {
+        grid-template-columns: 1fr !important;
+        height: fit-content !important;
+        overflow-y: scroll;
+    }
+}
+
+/* MOBILE */
 @media screen and (max-width: 767px) {
     .add_order_coint {
         display: flex !important;
@@ -518,11 +534,6 @@ body.dark .table {
     }
 
     .graphBox {
-        grid-template-columns: 1fr !important;
-        max-height: fit-content !important;
-    }
-
-    .analysis_section {
         grid-template-columns: 1fr !important;
         max-height: fit-content !important;
     }
@@ -609,4 +620,8 @@ body.dark .table {
 
 .analysis_box .counter {
     margin-bottom: 20px;
+}
+
+.analysis_box .table {
+    font-size: 18px;
 }
