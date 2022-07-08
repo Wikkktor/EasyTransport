@@ -1,5 +1,6 @@
 import datetime
-
+from django.db.models.functions import TruncMonth
+from django.db.models.aggregates import Count
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
@@ -73,13 +74,18 @@ class Analysis(LoginRequiredMixin, View):
         orders = Order.objects.filter(user_id=user)
         ranges = [
             (orders.filter(distance__lte=20).count(), "0-20"),
-             (orders.filter(distance__lte=40, distance__gt=20).count(), "20-40"),
-              (orders.filter(distance__lte=80, distance__gt=40).count(), "40-80"),
-               (orders.filter(distance__lte=140, distance__gt=80).count(), "80-140"),
-                (orders.filter(distance__lte=220, distance__gt=140).count(), "140-220"),
-                 (orders.filter(distance__lte=320, distance__gt=220).count(), "220-320"),
-                  (orders.filter(distance__gt=320).count(), "+320"),
+            (orders.filter(distance__lte=40, distance__gt=20).count(), "20-40"),
+            (orders.filter(distance__lte=80, distance__gt=40).count(), "40-80"),
+            (orders.filter(distance__lte=140, distance__gt=80).count(), "80-140"),
+            (orders.filter(distance__lte=220, distance__gt=140).count(), "140-220"),
+            (orders.filter(distance__lte=320, distance__gt=220).count(), "220-320"),
+            (orders.filter(distance__gt=320).count(), "+320"),
         ]
+        current_date = datetime.date.today()
+        months_ago = 6
+        six_month_previous_date = current_date - datetime.timedelta(days=(months_ago * 365 / 12))
+        bar_chart = orders.filter(delivery_time__gte=six_month_previous_date).annotate(
+            month=TruncMonth('delivery_time')).values('month').annotate(sum=Count('id'))
         drivers = Driver.objects.raw(f"""
         
           SELECT {user} 
@@ -110,7 +116,7 @@ class Analysis(LoginRequiredMixin, View):
         ORDER BY SUM(distance::numeric) DESC;
         
         """)
-        context = {'drivers': drivers, 'cars': cars, 'ranges': ranges}
+        context = {'drivers': drivers, 'cars': cars, 'ranges': ranges, 'bar_chart': bar_chart}
         return render(request, 'analysis.html', context)
 
 
