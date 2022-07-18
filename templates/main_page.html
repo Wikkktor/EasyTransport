@@ -98,7 +98,7 @@
                         title: "{{ order.client }}"
                     });
                     infowindows[{{ forloop.counter }}] = new google.maps.InfoWindow({
-                        content: "<strong style='font-size: 18px'>{{ order.client }} <br> Adres dostawy: {{ order.delivery_address }} <br> {{ order.delivery_time|date:"d/M H:i" }}</strong>"
+                        content: "<div style='text-align:center'><strong style='font-size: 18px'>{{ order.client }} <br> Adres dostawy: {{ order.delivery_address }} <br> {{ order.delivery_time|date:"d/M H:i" }}</strong></div>"
                     })
                     google.maps.event.addListener(markers[{{ forloop.counter }}], "click", function () {
                         infowindows[{{ forloop.counter }}].open(map, markers[{{ forloop.counter }}]);
