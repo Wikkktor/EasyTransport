@@ -20,6 +20,7 @@
     --button-color: #695CFE;
     --button-text: white;
     --button-color-hover: #274c77;
+    --black-white: black;
 
     /* ====== Transition ====== */
     --tran-02: all 0.2s ease;
@@ -49,6 +50,7 @@ body.dark {
     --button-color: #495057;
     --button-text: white;
     --button-color-hover: #2f4550;
+    --black-white: white;
 }
 
 h1, h2, h3, h4, h5, h6, label, p, th, td {
@@ -590,6 +592,7 @@ body.dark .table {
     height: 100%;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0);
     border-radius: 1.3em;
+    overflow: hidden;
 }
 
 /* END OF CHARTS */
@@ -624,4 +627,9 @@ body.dark .table {
 
 .analysis_box .table {
     font-size: 18px;
+}
+
+.orders_dropdown {
+    background-color: var(--primary-color) !important;
+    color: var(--black-white) !important;
 }
