@@ -8,5 +8,6 @@ urlpatterns = [
     path('analiza/', v.Analysis.as_view(), name='analysis'),
     path('ustawienia/', v.Settings.as_view(), name='settings'),
     path('kontakt-pomoc/', v.Contact.as_view(), name='contact'),
-    path('platnosci/', v.Payments.as_view(), name='payments')
+    path('platnosci/', v.Payments.as_view(), name='payments'),
+    path('zamowienia/usun/<int:pk>/', v.delete_order, name='delete_order'),
 ]

@@ -136,3 +136,11 @@ class Contact(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user.id
         return render(request, 'help.html')
+
+
+def delete_order(request, pk):
+    user = request.user.id
+    order = Order.objects.get(id=pk)
+    if order.user_id == user:
+        order.delete()
+    return redirect('orders')

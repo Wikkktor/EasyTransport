@@ -34,7 +34,7 @@ class Order(models.Model):
         return reverse('order_detail_view', args=(self.pk,))
 
     def get_delete_url(self):
-        return reverse('order_delete_view', args=(self.pk,))
+        return reverse('delete_order', args=(self.pk,))
 
     def get_modify_url(self):
         return reverse('order_update_view', args=(self.pk,))

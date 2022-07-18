@@ -61,7 +61,7 @@
                         <div class="menu">
                             <div class="header">Zamówienie numer: {{ order.id }}</div>
                             <div class="ui divider"></div>
-                            <div class="item">Usuń</div>
+                            <div onclick="window.location = '{{ order.get_delete_url }}'"  class="item">Usuń</div>
                             <div class="item">Edytuj</div>
                             <div class="item">Szczegóły</div>
                             <div class="ui divider"></div>
